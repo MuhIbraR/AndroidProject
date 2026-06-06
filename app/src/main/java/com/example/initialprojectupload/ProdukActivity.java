@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ProdukActivity extends AppCompatActivity {
 
     EditText etNama, etHarga;
-    Button btnTambah;
+    Button btnTambah, btnKembali;
     ListView listProduk;
 
     DBHelper dbHelper;
@@ -37,9 +37,14 @@ public class ProdukActivity extends AppCompatActivity {
         etNama = findViewById(R.id.etNama);
         etHarga = findViewById(R.id.etHarga);
         btnTambah = findViewById(R.id.btnTambah);
+        btnKembali = findViewById(R.id.btnKembali);
         listProduk = findViewById(R.id.listProduk);
 
         dbHelper = new DBHelper(this);
+
+        btnKembali.setOnClickListener(v -> {
+            finish();
+        });
 
         tampilkanProduk();
 

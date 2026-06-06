@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class ProdukActivity extends AppCompatActivity {
 
-    EditText etNama, etHarga;
+    EditText etNama, etHarga, etStok;
     Button btnTambah, btnKembali;
     ListView listProduk;
 
@@ -36,6 +36,7 @@ public class ProdukActivity extends AppCompatActivity {
 
         etNama = findViewById(R.id.etNama);
         etHarga = findViewById(R.id.etHarga);
+        etStok = findViewById(R.id.etStok);
         btnTambah = findViewById(R.id.btnTambah);
         btnKembali = findViewById(R.id.btnKembali);
         listProduk = findViewById(R.id.listProduk);
@@ -52,8 +53,9 @@ public class ProdukActivity extends AppCompatActivity {
 
             String nama = etNama.getText().toString();
             String harga = etHarga.getText().toString();
+            String stok = etStok.getText().toString();
 
-            if(nama.isEmpty() || harga.isEmpty()){
+            if(nama.isEmpty() || harga.isEmpty() || stok.isEmpty()){
 
                 Toast.makeText(
                         this,
@@ -71,8 +73,8 @@ public class ProdukActivity extends AppCompatActivity {
                     new ContentValues();
 
             values.put("nama", nama);
-            values.put("harga",
-                    Integer.parseInt(harga));
+            values.put("harga", Integer.parseInt(harga));
+            values.put("stok", Integer.parseInt(stok));
 
             db.insert(
                     "produk",
@@ -82,6 +84,7 @@ public class ProdukActivity extends AppCompatActivity {
 
             etNama.setText("");
             etHarga.setText("");
+            etStok.setText("");
 
             tampilkanProduk();
 
@@ -124,24 +127,52 @@ public class ProdukActivity extends AppCompatActivity {
         EditText etEditHarga =
                 dialogView.findViewById(R.id.etEditHarga);
 
+        EditText etEditStok =
+                dialogView.findViewById(R.id.etEditStok);
+
         Button btnSimpan =
                 dialogView.findViewById(R.id.btnSimpanEdit);
 
         Button btnHapus =
                 dialogView.findViewById(R.id.btnHapus);
 
-        String data =
-                dataProduk.get(position);
+        SQLiteDatabase db =
+                dbHelper.getReadableDatabase();
 
-        String[] split =
-                data.split(" - Rp ");
+        Cursor cursor =
+                db.rawQuery(
+                        "SELECT * FROM produk WHERE id=?",
+                        new String[]{
+                                String.valueOf(
+                                        idProduk.get(position)
+                                )
+                        }
+                );
 
-        etEditNama.setText(split[0]);
-        etEditHarga.setText(split[1]);
+        if(cursor.moveToFirst()){
+
+            etEditNama.setText(
+                    cursor.getString(1)
+            );
+
+            etEditHarga.setText(
+                    String.valueOf(
+                            cursor.getInt(2)
+                    )
+            );
+
+            etEditStok.setText(
+                    String.valueOf(
+                            cursor.getInt(3)
+                    )
+            );
+        }
+
+        cursor.close();
 
         btnSimpan.setOnClickListener(v -> {
 
-            SQLiteDatabase db =
+            SQLiteDatabase dbUpdate =
                     dbHelper.getWritableDatabase();
 
             ContentValues values =
@@ -156,6 +187,13 @@ public class ProdukActivity extends AppCompatActivity {
                     "harga",
                     Integer.parseInt(
                             etEditHarga.getText().toString()
+                    )
+            );
+
+            values.put(
+                    "stok",
+                    Integer.parseInt(
+                            etEditStok.getText().toString()
                     )
             );
 
@@ -184,7 +222,7 @@ public class ProdukActivity extends AppCompatActivity {
 
         btnHapus.setOnClickListener(v -> {
 
-            SQLiteDatabase db =
+            SQLiteDatabase dbUpdate =
                     dbHelper.getWritableDatabase();
 
             db.delete(
@@ -234,8 +272,10 @@ public class ProdukActivity extends AppCompatActivity {
 
             dataProduk.add(
                     cursor.getString(1)
-                            + " - Rp "
+                            + " | Rp "
                             + cursor.getInt(2)
+                            + " | Stok "
+                            + cursor.getInt(3)
             );
         }
 

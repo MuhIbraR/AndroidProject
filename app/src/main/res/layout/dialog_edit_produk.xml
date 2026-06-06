@@ -20,6 +20,13 @@
         android:hint="Harga"
         android:inputType="number"/>
 
+    <EditText
+        android:id="@+id/etEditStok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Stok"
+        android:inputType="number"/>
+
     <Button
         android:id="@+id/btnSimpanEdit"
         android:layout_width="match_parent"

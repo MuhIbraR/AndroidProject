@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/etEditNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Produk"/>
+
+    <EditText
+        android:id="@+id/etEditHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Harga"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btnSimpanEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan"/>
+
+    <Button
+        android:id="@+id/btnHapus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hapus"/>
+
+</LinearLayout>

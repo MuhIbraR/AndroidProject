@@ -61,21 +61,13 @@ public class Admin extends AppCompatActivity {
 
         menuProduk.setOnClickListener(v -> {
 
-            drawerLayout.closeDrawers();
-
-            Toast.makeText(
-                    Admin.this,
-                    "Kelola Produk",
-                    Toast.LENGTH_SHORT
-            ).show();
-
-            /*
-            Nanti diganti:
             Intent intent =
-                    new Intent(Admin.this,
-                            ProdukActivity.class);
+                    new Intent(
+                            Admin.this,
+                            ProdukActivity.class
+                    );
+
             startActivity(intent);
-            */
 
         });
 

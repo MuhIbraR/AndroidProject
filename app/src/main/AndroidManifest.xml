@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InitialProjectUpload">
         <activity
+            android:name=".ProdukActivity"
+            android:exported="false" />
+        <activity
             android:name=".LaporanActivity"
             android:exported="false" />
         <activity

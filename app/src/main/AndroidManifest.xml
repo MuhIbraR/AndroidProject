@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InitialProjectUpload">
         <activity
+            android:name=".Admin"
+            android:exported="false" />
+        <activity
             android:name=".Kasir"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

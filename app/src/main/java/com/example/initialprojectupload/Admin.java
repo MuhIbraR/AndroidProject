@@ -2,65 +2,111 @@ package com.example.initialprojectupload;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class Admin extends AppCompatActivity {
 
-    private DBHelper dbHelper;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    ActionBarDrawerToggle toggle;
 
-    private Button btnKelolaProduk;
-    private Button btnKelolaStok;
-    private Button btnKelolaKasir;
-    private Button btnLaporan;
-    private Button btnLogout;
+    TextView menuDashboard;
+    TextView menuProduk;
+    TextView menuLaporan;
+    TextView menuLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin);
 
-        dbHelper = new DBHelper(this);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        toolbar = findViewById(R.id.toolbar);
 
-        ViewCompat.setOnApplyWindowInsetsListener(
-                findViewById(R.id.main),
-                (v, insets) -> {
-                    Insets systemBars =
-                            insets.getInsets(
-                                    WindowInsetsCompat.Type.systemBars());
+        menuDashboard = findViewById(R.id.menuDashboard);
+        menuProduk = findViewById(R.id.menuProduk);
+        menuLaporan = findViewById(R.id.menuLaporan);
+        menuLogout = findViewById(R.id.menuLogout);
 
-                    v.setPadding(
-                            systemBars.left,
-                            systemBars.top,
-                            systemBars.right,
-                            systemBars.bottom);
+        setSupportActionBar(toolbar);
 
-                    return insets;
-                });
+        toggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.open,
+                R.string.close
+        );
 
-        btnKelolaProduk = findViewById(R.id.btnKelolaProduk);
-        btnKelolaStok = findViewById(R.id.btnKelolaStok);
-        btnKelolaKasir = findViewById(R.id.btnKelolaKasir);
-        btnLaporan = findViewById(R.id.btnLaporan);
-        btnLogout = findViewById(R.id.btnLogout);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        btnLaporan.setOnClickListener(v -> {
+        menuDashboard.setOnClickListener(v -> {
+
+            drawerLayout.closeDrawers();
+
+            Toast.makeText(
+                    Admin.this,
+                    "Dashboard",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+        });
+
+        menuProduk.setOnClickListener(v -> {
+
+            drawerLayout.closeDrawers();
+
+            Toast.makeText(
+                    Admin.this,
+                    "Kelola Produk",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            /*
+            Nanti diganti:
+            Intent intent =
+                    new Intent(Admin.this,
+                            ProdukActivity.class);
+            startActivity(intent);
+            */
+
+        });
+
+        menuLaporan.setOnClickListener(v -> {
+
+            drawerLayout.closeDrawers();
+
+            Toast.makeText(
+                    Admin.this,
+                    "Laporan Penjualan",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            /*
+            Nanti diganti:
             Intent intent =
                     new Intent(Admin.this,
                             LaporanActivity.class);
-
             startActivity(intent);
+            */
+
         });
 
-        btnLogout.setOnClickListener(v -> {
+        menuLogout.setOnClickListener(v -> {
+
+            Intent intent = new Intent(Admin.this, Home.class);
+
+            startActivity(intent);
+
             finish();
+
         });
     }
 }

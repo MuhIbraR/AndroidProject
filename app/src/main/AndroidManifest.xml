@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InitialProjectUpload">
         <activity
+            android:name=".EditProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TambahProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KategoriActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProdukActivity"
             android:exported="false" />
         <activity

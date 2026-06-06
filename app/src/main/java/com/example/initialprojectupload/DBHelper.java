@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "kasir.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -17,11 +17,18 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(
+                "CREATE TABLE kategori (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "nama_kategori TEXT)"
+        );
+
+        db.execSQL(
                 "CREATE TABLE produk (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                         "nama TEXT," +
                         "harga INTEGER," +
-                        "stok INTEGER)"
+                        "stok INTEGER," +
+                        "kategori_id INTEGER)"
         );
 
     }
@@ -32,6 +39,8 @@ public class DBHelper extends SQLiteOpenHelper {
                           int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS produk");
+        db.execSQL("DROP TABLE IF EXISTS kategori");
+
         onCreate(db);
     }
 }

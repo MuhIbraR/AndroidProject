@@ -27,6 +27,11 @@
         android:hint="Stok"
         android:inputType="number"/>
 
+    <Spinner
+        android:id="@+id/spEditKategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/btnSimpanEdit"
         android:layout_width="match_parent"

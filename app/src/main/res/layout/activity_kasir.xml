@@ -30,11 +30,54 @@
     </LinearLayout>
 
     <!-- Daftar Produk -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kategori"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+    <ListView
+        android:id="@+id/listKategori"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Produk"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
     <ListView
         android:id="@+id/listProdukKasir"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keranjang"
+        android:textStyle="bold"
         android:layout_marginTop="10dp"/>
+
+    <ListView
+        android:id="@+id/listKeranjang"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
+
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total : Rp 0"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnBayar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bayar"/>
 
 </LinearLayout>

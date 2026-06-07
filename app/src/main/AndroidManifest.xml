@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InitialProjectUpload">
         <activity
+            android:name=".KeranjangItem"
+            android:exported="false" />
+        <activity
             android:name=".EditProdukActivity"
             android:exported="false" />
         <activity

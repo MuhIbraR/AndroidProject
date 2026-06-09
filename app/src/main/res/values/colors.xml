@@ -2,4 +2,24 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Modern Color Palette -->
+    <color name="colorPrimary">#0D3B78</color> <!-- Deep Indigo -->
+    <color name="colorPrimaryVariant">#08244B</color>
+    <color name="colorSecondary">#00BFA5</color> <!-- Vibrant Teal -->
+    <color name="colorSecondaryVariant">#00897B</color>
+    
+    <!-- Backgrounds -->
+    <color name="colorBackground">#F5F7FA</color> <!-- Soft Gray -->
+    <color name="colorCardBackground">#FFFFFF</color>
+    
+    <!-- Text Colors -->
+    <color name="colorTextPrimary">#1A1A2E</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextHint">#BDBDBD</color>
+    
+    <!-- State Colors -->
+    <color name="colorError">#E53935</color>
+    <color name="colorSuccess">#43A047</color>
+    <color name="colorWarning">#FFB300</color>
 </resources>

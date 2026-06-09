@@ -13,12 +13,19 @@ import java.util.ArrayList;
 public class KeranjangAdapter
         extends ArrayAdapter<KeranjangItem> {
 
+    // Callback agar Kasir.java bisa memperbarui total saat qty berubah
+    public interface OnCartChangedListener {
+        void onCartChanged();
+    }
+
     Context context;
     ArrayList<KeranjangItem> data;
+    OnCartChangedListener listener;
 
     public KeranjangAdapter(
             Context context,
-            ArrayList<KeranjangItem> data
+            ArrayList<KeranjangItem> data,
+            OnCartChangedListener listener
     ) {
         super(
                 context,
@@ -28,6 +35,7 @@ public class KeranjangAdapter
 
         this.context = context;
         this.data = data;
+        this.listener = listener;
     }
 
     @Override
@@ -37,7 +45,7 @@ public class KeranjangAdapter
             ViewGroup parent
     ) {
 
-        if(convertView == null){
+        if (convertView == null) {
 
             convertView =
                     LayoutInflater.from(context)
@@ -72,7 +80,7 @@ public class KeranjangAdapter
                 data.get(position);
 
         tvNamaProduk.setText(
-                item.namaProduk
+                item.namaProduk + " — Rp " + item.harga
         );
 
         tvQty.setText(
@@ -87,15 +95,28 @@ public class KeranjangAdapter
 
             notifyDataSetChanged();
 
+            if (listener != null) listener.onCartChanged();
+
         });
 
         btnMinus.setOnClickListener(v -> {
 
-            if(item.qty > 1){
+            if (item.qty > 1) {
 
                 item.qty--;
 
                 notifyDataSetChanged();
+
+                if (listener != null) listener.onCartChanged();
+
+            } else {
+
+                // Qty sudah 1, klik minus → hapus dari keranjang
+                data.remove(position);
+
+                notifyDataSetChanged();
+
+                if (listener != null) listener.onCartChanged();
             }
 
         });
